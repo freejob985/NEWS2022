@@ -1,0 +1,7 @@
+[02-Jan-2022 06:20:26 UTC] PHP Fatal error:  Uncaught ErrorException: file_put_contents(/home/thabat/aa.thabat.info/storage/framework/views/4e94f1495992c24542ed83b903c701bce7fa2c58.php): failed to open stream: Permission denied in /home/thabat/aa.thabat.info/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:122
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_put_conten...', '/home/thabat/aa...', 122, Array)
+#1 /home/thabat/aa.thabat.info/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(122): file_put_contents('/home/thabat/aa...', '<?php $__env->s...', 0)
+#2 /home/thabat/aa.thabat.info/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php(122): Illuminate\Filesystem\Filesystem->put('/home/thabat/aa...', '<?php $__env->s...')
+#3 /home/thabat/aa.thabat.info/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(51): Illuminate\View\Compilers\BladeCompiler->compile('/home/thabat/aa...')
+#4 /home/thabat/aa.thabat.info/vendor/larav in /home/thabat/aa.thabat.info/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 122
