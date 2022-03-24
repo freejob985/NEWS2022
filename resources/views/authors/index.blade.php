@@ -14,7 +14,7 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-12">
-                        <h1 class="category-headding">الكتاب :</h1>
+                        <h1 class="category-headding">المؤلفين  :</h1>
                         <div class="headding-border"></div>
                     </div>
 
@@ -29,13 +29,13 @@
                                 <div class="thumbnail">
                                     <div class="caption text-center" >
                                         <div class="position-relative">
-                                            <img src="/images/{{$user->img_path}}" style="width:176px;height:235px;">
+                                            <img src="/images/user/{{$user->img_path}}" style="width:176px;height:235px;">
                                         </div>
                                     <p><i class="glyphicon glyphicon-user light-red lighter bigger-120"></i>&nbsp; الكاتب: {{$user->first_name}} {{$user->last_name}}</p>
                                     </div>
-                                    <div class="caption card-footer text-center">
-                                        <ul class="list-inline">
-                                                <li><i class="people lighter"></i>&nbsp;تاريخ الانضمام: {{$user->created_at}}/{{$user->created_at}}/{{$user->created_at}}</li>
+                                    <div class="caption card-footer text-center" style="display: none;">
+                                        <ul class="list-inline" style="display: none;">
+                                                <li><i class="people lighter"></i>&nbsp; الكاتب: {{$user->first_name}} {{$user->last_name}}</li>
                                                 <li></li>
                                         </ul>
                                     </div>

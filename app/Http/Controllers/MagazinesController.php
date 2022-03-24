@@ -90,7 +90,8 @@ class MagazinesController extends Controller
      */
     public function show($id)
     {
-        //
+
+
         $magazine = Magazine::findOrFail($id);
         $articles = Article::where('magazine_id', $id)->where('is_active', '1')->get();
         return view('magazines.show', compact('magazine', 'articles'));

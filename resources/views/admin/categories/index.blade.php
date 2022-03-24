@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('content') 
+@section('content')
 <div class="container-fluid">
-        @include('includes.messages')
+
     <div class="row mt-5">
         <div class="col-md-8">
-                
+
                 <div>
                     <h1 class="display-4 mb-3">الاقسام</h1>
                 </div>
@@ -16,7 +16,7 @@
                         <th>اسم القسم</th>
                         <th>عددالمقلات في القسم</th>
                         <th>مسح</th>
-    
+
                     </tr>
                     </thead>
                     <tbody>

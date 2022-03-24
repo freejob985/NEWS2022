@@ -15,7 +15,7 @@
                 @endif
             @endif
         </div>
-        
+
            <div class="row">
                <div class="col-md-9">
                     <div class="row">
@@ -30,20 +30,20 @@
                                                         <div class="position-relative">
                                                             <a href="{{route('magazines.show', ['magazine'=>$magazine->id])}}">
                                                                 <img src="/images/{{$magazine->cover_path}}" alt="" class="img-fluid card-img" style="width:200px; height:250px;">
-                                                            </a> 
+                                                            </a>
                                                         </div>
                                                         <h4 class="card-title">{{$magazine->magazine_name}}</h4>
                                                     </div>
                                                     <div class="caption card-footer text-center">
                                                         <ul class="list-inline">
-                                                            <li><i class="people lighter"></i>&nbsp;تاريخ الإصدار: {{$magazine->created_at}}/{{$magazine->created_at}}/{{$magazine->created_at}}</li>
+                                                            <li><i class="people lighter"></i>&nbsp;{{$magazine->magazine_name}}</li>
                                                             <li></li>
-                                                                
+
                                                                 <form action="{{ route('pdf.show')}}" method="POST">
                                                                         @csrf
                                                                     <input type="hidden" name="id" value="{{$magazine->id}}">
                                                                     <input type="submit" value="قراءة pdf" class="btn btn-secondary">
-                                                                    </form>    
+                                                                    </form>
                                                             <i class="glyphicon glyphicon-download lighter"></i></li>
                                                         </ul>
                                                     </div>
@@ -70,16 +70,16 @@
                         </div>
                     </div>
                 </div>
-                    
+
                 @endforeach
                 @endif
 
 
-                
+
             </div>
 
-        </div> 
+        </div>
 </div>
 <div style="min-height:250px"></div>
-    
+
 @endsection

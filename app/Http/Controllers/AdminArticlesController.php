@@ -36,6 +36,7 @@ class AdminArticlesController extends Controller
      */
     public function create()
     {
+
         $categories = Category::all();
         $magazines = Magazine::all();
         return view('admin.articles.create', compact('magazines', 'categories'));
@@ -70,8 +71,8 @@ class AdminArticlesController extends Controller
                 $article->article_title = $request->article_title;
                 $article->article_content = $request->article_content;
                 $article->category_id = $request->category_id;
+                $article->optradio = $request->optradio;
                 $article->save();
-
                 return redirect('/admin/articles/'. $article->id .'/photos')->with('success','تم اضافة المقالة بنجاح.');
     }
 
@@ -129,7 +130,7 @@ class AdminArticlesController extends Controller
         $article->article_content = $request->article_content;
         $article->magazine_id = $request->magazine_id;
         $article->save();
-        
+
         return redirect('/admin/articles');
     }
 
@@ -165,7 +166,7 @@ class AdminArticlesController extends Controller
             foreach($article->photos as $photo){
                 if(file_exists(public_path().'/images/'.$photo->path)){
                     unlink(public_path().'/images/'.$photo->path);
-                } 
+                }
             }
         }
         $article->delete();

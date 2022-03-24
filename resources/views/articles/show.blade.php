@@ -4,7 +4,7 @@
 <?php use Arabic\Arabic; ?>
 <div class="container py-4">
     <div class="row">
-   
+
         <div class="col-md-9 col-sm-9">
                 <img src="/images/{{$article->article_cover}}" alt="" class="img-fluid text-center article-img">
            <h1 class="display-4">{{$article->article_title}}</h1>
@@ -21,23 +21,23 @@
 
         @if (count($article->photos) > 0)
                 <div class="row mt-3">
-                 
+
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                               
+
                                 <div class="carousel-inner">
                                         @foreach ($article->photos as $index => $photo)
                                         @if($index==1)
                                   <div class="carousel-item active">
                                     <img height="327" width="197" class="d-block w-100" src="/images/{{$photo->path}}" alt="First slide">
                                   </div>
-                                  @else 
+                                  @else
                                   <div class="carousel-item ">
                                         <img height="327" width="197" class="d-block w-100" src="/images/{{$photo->path}}" alt="First slide">
                                       </div>
                                       @endif
                                   @endforeach
                                     </div>
-                                   
+
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                   <span class="sr-only">Previous</span>
@@ -47,14 +47,14 @@
                                   <span class="sr-only">Next</span>
                                 </a>
                               </div>
-                  
+
                 </div>
             @endif
 
             <br><br>
             <p class="col-md-12" style="white-space:pre-line; ">{!! $article->article_content!!}</p>
         </div>
-        
+
         <div class="col-md-3 col-sm-3 right-padding">
                 <aside>
         <h2 class="category-headding ">الرعاة</h2>
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-        
+
     @endforeach
     @endif
                 </aside>
@@ -81,7 +81,7 @@
     {{-- ADD Comment Section --}}
     <div class="row">
         <div class="col-md-8">
-    <div class="form-area">
+    <div class="form-area" style="display: none;">
             <h3 class="category-headding ">ترك تعليق</h3>
             <div class="headding-border"></div>
             <form method="POST" action="/articles/{{$article->id}}/comments">
@@ -114,7 +114,7 @@
                             </label>
                         </span>
                     </div>
-                  
+
                     <div class="col-sm-6">
                         <span class="input">
                             <input class="input_field" name="email" type="email" id="input-2" required>
@@ -136,16 +136,16 @@
                 </div>
             </form>
         </div>
-  
+
     </div>
 </div>
 
 
 
      {{-- FETCH COMMENT --}}
-    <div class="row">
+    <div class="row" style="display: none;">
             <div class="col-md-8">
-    <div class="comments-container-fluid">
+    <div class="comments-container-fluid" style="display: none;">
         <h3>التعليق </h3>
         <div class="headding-border"></div>
         @foreach($comments as $comment)
@@ -157,28 +157,28 @@
                     <!-- Contenedor del Comentario -->
                     <div class="comment-box">
                         <div class="comment-head">
-                           
+
                             <h6 class="comment-name"> {{  $comment->username }}</h6>
-                         
-                         
+
+
                             <span>   {{'منذ '.Arabic::since($comment->created_at->diffforHumans() )}}</span>
                             <div class="accordion" id="accordionExample">
                             <i >
                                     <button class="btn btn-link fa fa-reply collapsed" type="button" data-toggle="collapse" data-target="#collapseOne{{$comment->id}}" aria-expanded="false" aria-controls="collapseOne">
-                                            
+
                                           </button>
                                 </i>
-                            
+
                             </div>
                         </div>
                         <div class="comment-content">
-                                {{  $comment->comment_content }} 
+                                {{  $comment->comment_content }}
                         </div>
                     </div>
                 </div>
 
 
-   
+
 
                        {{-- ADD REPLY  --}}
                         <div id="collapseOne{{$comment->id}}" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -200,7 +200,7 @@
                                                                         </label>
                                                                     </span>
                                                                 </div>
-                                                           
+
                                                                     <br><br><br>
                                                             @else
                                                             <div class="col-sm-6">
@@ -211,8 +211,8 @@
                                                                     </label>
                                                                 </span>
                                                             </div>
-                                                          
-                                                      
+
+
                                                             @endif
                                                             <div class="col-sm-12">
                                                                 <span class="input">
@@ -226,18 +226,18 @@
                                                         </div>
                                                     </form>
                                                 </div>
-                                          
+
                                             </div>
-                                        </div> 
+                                        </div>
                                      </div>
                               </div>
                             {{-- END OF ADD REPLY --}}
 
-        
+
 
 
                 <!--FETCH REPLY -->
-             
+
                         @foreach ($comment->replies as $reply)
                         @if(count($comment->replies)>0 && $reply->is_active == 1)
                         <ul class="comments-list reply-list">
@@ -247,25 +247,25 @@
                         <!-- Contenedor del Comentario -->
                         <div class="comment-box">
                             <div class="comment-head">
-                             
+
                                 <h6 class="comment-name"><a href="#"> {{  $reply->username }}</a></h6>
-                              
+
                                 <span>{{'منذ '.Arabic::since($reply->created_at->diffforHumans() )}}</span>
-                              
+
                             </div>
                             <div class="comment-content">
-                                    {{  $reply->reply_content }} 
+                                    {{  $reply->reply_content }}
 
                             </div>
                         </div>
                     </li>
-         
-           
+
+
                 </ul>
                 @endif
                 @endforeach
             </li>
-  
+
         </ul>
         @endforeach
     </div>
@@ -274,5 +274,5 @@
 
 
 </div>
-    
+
 @endsection

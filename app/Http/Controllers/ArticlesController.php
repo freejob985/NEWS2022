@@ -35,13 +35,13 @@ class ArticlesController extends Controller
         public function show($magazine_id,$id)
     {
         //
+
         $article = Article::findOrFail($id);
         $comments = $article->comments()->where('is_active',1)->orderBy('created_at', 'desc')->get();
         $article->views > 0 ? $article->views++ : $article->views = 1;
         $article->save();
         $sponsors = Sponsor::where('created_at', '>', date('Y-m-d',time() - 60*60*24*365))->orderBy('ordering', 'desc')->get();
 
-          
 
         if($article->is_active != 1){
             return redirect('/');
@@ -52,6 +52,7 @@ class ArticlesController extends Controller
     public function create($magazine_id)
     {
         //
+    //    dd("point :  - 3 ");
         $categories = Category::all();
         $channel_id = Magazine::findOrFail($magazine_id)->channel_id;
         return view('articles.create', compact('magazine_id','channel_id', 'categories'));
@@ -72,9 +73,9 @@ class ArticlesController extends Controller
     public function store(CreateArticleRequest $request)
     {
         //
-        
-        
-          dd($request->all());
+
+
+   //       dd($request->all());
         $article = new Article;
          //Asigning the uploaded image to a variable
          $file = $request->article_cover;
@@ -86,8 +87,8 @@ class ArticlesController extends Controller
         // check if the request has a magazine id
         $request->magazine_id ? $article->magazine_id = $request->magazine_id : $article->magazine_id = 0;
         //Check if user is logged in
-       
-      
+
+
         //If user is admin it will be autmatically active
         if(Auth::check())
            {
@@ -123,13 +124,13 @@ class ArticlesController extends Controller
 
     public function show_archives($year, $month)
     {
-       
+
         $archives = Article::whereYear('created_at', '=', $year)
               ->whereMonth('created_at', '=', $month)
               ->get();
 
 
-            
+
         return view('archives.index',compact('archives'));
 
 
@@ -144,17 +145,17 @@ class ArticlesController extends Controller
     }
     public function show_category($name)
     {
-       
+
         $category_id = DB::select('SELECT id FROM categories WHERE category_name = ?', [$name]);
         $magazine = Magazine::where('is_active', 1)->orderBy('created_at', 'desc')->first();
        $articles = Article::where('magazine_id',$magazine->id)->where('category_id' ,  $category_id[0]->id )->get();
 
-                
+
         //Get sponsors
         $sponsors = Sponsor::where('created_at', '>', date('Y-m-d',time() - 60*60*24*365))->orderBy('ordering', 'desc')->get();
         $sponsorsArr = $sponsors->toArray();
         $latestSponsors = array_slice($sponsorsArr, 0 , 10);
-       
+
      //  return dd($articles);
       return view('articles.showcategory',compact('articles', 'latestSponsors'));
 

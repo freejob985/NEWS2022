@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
- 
+
 
   <!-- POSTS -->
   <section id="posts">
@@ -35,27 +35,27 @@
                   <td>القسم</td>
                   <td>{{$article->created_at}}/{{$article->created_at}}/{{$article->created_at}}</td>
                   <td>
-                    
+
                     <form action="{{route('admin.articles.activation', ['magazine_id'=>$article->magazine_id, 'article'=>$article->id])}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="PUT">
                         <button type="submit" class="btn btn-warning">
-                          <i class="far fa-edit"></i> {{$article->is_active == 0 ? 'تفعيل' : 'إقاف'}} 
+                          <i class="far fa-edit"></i> {{$article->is_active == 0 ? 'تفعيل' : 'إقاف'}}
                         </button>
                       </form>
-                      
+
                     </td>
                     <td><a href="{{route('admin.articles.edit', ['article'=>$article->id])}}" class="btn btn-secondary">تعديل و تعين اصدار</a></td>
-                 
-                  <td>     
+
+                  <td>
                       <form action="{{route('admin.articles.destroy', ['article'=>$article->id])}}" method="POST">
                           {{csrf_field()}}
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">
-                              <i class="far fa-edit"></i> مسح 
+                              <i class="far fa-edit"></i> مسح
                           </button>
                       </form>
-                      
+
                   </td>
                 </tr>
                 @endforeach
@@ -78,7 +78,7 @@
 
           <div class="card text-center bg-warning text-white mb-3">
             <div class="card-body">
-              <h3>عدد الكتاب</h3>
+              <h3>عدد المؤلفين </h3>
               <h5>
                 <i class="fas fa-users"></i> {{$users->count()}}
               </h4>
@@ -106,7 +106,7 @@
               </div>
             </div>
 
-            
+
             <div class="card text-center bg-secondary text-white mb-3">
               <div class="card-body">
                 <h3>عدد الرعاة</h3>
